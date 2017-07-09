@@ -1,3 +1,19 @@
+Schema structure of the dataset : <br />
+	a) metadata.txt <DOI, Title, Abstract, Community> <br />
+	b) citations.txt <FromDOI, ToDOI, Context> <br />
+	c) link.txt <br />
+
+Schema of tables in Hbase : <br/>
+I) PaperbagofPhrases => 'community', 'keyphrases', 'contextPhrases', 'metricsDirect', 'metricsIndirect' <br />
+II) GlobalKeyphraseList => 'keyphrase' <br />
+III) DOIMergedContext => 'citationContext' <br />
+IV) DOITerms => 'termList' <br />
+V) CommunityNetworkForDirect => 'from', 'to', 'edgeCount'. <br />
+VI) CommunityNetworkForIndirect => 'from', 'to', 'edgeCount'. <br />
+VII) CommunityAnalysisFinal => 'count', 'metricsDirect', 'metricsIndirect'  <br />
+VIII) CitationNetworksFinal => 'fromPaper', 'topapersDirect', 'topapersIndirect'. <br />
+
+Steps to proceed : <br />
 1. Run the filtering tasks on the raw dataset. <br />
 2. Run FieldTagging.java on the papers left out after automated field tagging. <br />
 3. Run PaperDOIKeywordsEntry.java. Input : taggedFilteredMetadata.java , Output : PaperBagofPhrases. <br />
